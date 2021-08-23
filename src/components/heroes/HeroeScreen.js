@@ -1,6 +1,11 @@
 import React, { useMemo } from 'react'
 import { Redirect, useParams } from 'react-router-dom'
+import { heroImages } from '../../helpers/heroImages';
 import { getHeroById } from '../../selectors/getHeroById';
+
+//Para trabajar con imagenes dinamicas
+//const heroImages = require.context('../../assets/heroes', true);
+//import heroImages from '../../assets/heroes/';
 
 export const HeroeScreen = ( {  history } ) => {
     const { heroeId } = useParams();
@@ -29,11 +34,14 @@ export const HeroeScreen = ( {  history } ) => {
         characters
     } = hero;
 
+
     return (
         <div className="row mt-5">
             <div className="col-4">
                 <img 
-                    src={ `../assets/heroes/${ heroeId }.jpg` }
+                    //src={ `../assets/heroes/${ heroeId }.jpg` }
+                    //src={heroImages + heroeId.toString() + ".jpg"}
+                    src={heroImages(`./${ heroeId }.jpg`).default}
                     alt={ superhero }
                     className="img-thumbnail animate__animated animate__fadeInLeft"
                 />
